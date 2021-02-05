@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using localnotification.Notification;
 using Xamarin.Forms;
 
 namespace localnotification
@@ -13,6 +14,11 @@ namespace localnotification
         public MainPage()
         {
             InitializeComponent();
+        }
+
+        private void SendNotification(object sender, EventArgs e)
+        {
+            DependencyService.Get<INotificationManager>().CreateNotification("SPTutorials", message.Text);
         }
     }
 }
