@@ -3,6 +3,6 @@ namespace localnotification.Notification
 {
     public interface INotificationManager
     {
-        void CreateNotification(String title, String message);
+        void SendNotification(String title, String message, DateTime? notifyTime);
     }
 }
