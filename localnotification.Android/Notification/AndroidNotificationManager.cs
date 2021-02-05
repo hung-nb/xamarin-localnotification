@@ -22,7 +22,6 @@ namespace localnotification.Droid.Notification
         int mMessageId = 0;
 
         private Context mContext;
-        public static String NOTIFICATION_CHANNEL_ID = "10023";
 
         public AndroidNotificationManager()
         {
@@ -58,12 +57,22 @@ namespace localnotification.Droid.Notification
         {
             if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
             {
-                var channelNameJava = new Java.Lang.String(mChannelName);
-                var channel = new NotificationChannel(mChannelId, channelNameJava, NotificationImportance.Default)
+                NotificationImportance importance = NotificationImportance.High;
+
+                NotificationChannel notificationChannel = new NotificationChannel(mChannelId, mChannelName, importance)
                 {
                     Description = mChannelDescription
                 };
-                mManager.CreateNotificationChannel(channel);
+                notificationChannel.EnableLights(true);
+                notificationChannel.EnableVibration(true);
+                notificationChannel.SetShowBadge(true);
+                notificationChannel.Importance = NotificationImportance.High;
+                notificationChannel.SetVibrationPattern(new long[] { 100, 200, 300, 400, 500, 400, 300, 200, 400 });
+
+                if (mManager != null)
+                {
+                    mManager.CreateNotificationChannel(notificationChannel);
+                }
             }
 
             mChannelInitialized = true;
@@ -79,7 +88,7 @@ namespace localnotification.Droid.Notification
 
                 PendingIntent pendingIntent = PendingIntent.GetActivity(mContext, mPendingIntentId++, intent, PendingIntentFlags.UpdateCurrent);
 
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(mContext, NOTIFICATION_CHANNEL_ID)
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(mContext, mChannelId)
                     .SetContentIntent(pendingIntent)
                     .SetContentTitle(title)
                     .SetContentText(message)
