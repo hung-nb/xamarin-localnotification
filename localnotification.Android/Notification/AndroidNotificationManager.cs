@@ -79,11 +79,12 @@ namespace localnotification.Droid.Notification
 
                 PendingIntent pendingIntent = PendingIntent.GetActivity(mContext, mPendingIntentId++, intent, PendingIntentFlags.UpdateCurrent);
 
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(mContext, NOTIFICATION_CHANNEL_ID)
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(mContext, mChannelId)
                     .SetContentIntent(pendingIntent)
                     .SetContentTitle(title)
                     .SetContentText(message)
                     .SetSmallIcon(Resource.Drawable.abc_btn_check_material)
+                    .SetVisibility((int)NotificationVisibility.Public)
                     .SetDefaults((int)NotificationDefaults.Sound | (int)NotificationDefaults.Vibrate);
 
                 var notification = builder.Build();
