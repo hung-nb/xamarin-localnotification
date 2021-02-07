@@ -6,6 +6,7 @@
     <StackLayout Padding="10">
         <Entry Placeholder="Message" x:Name="message" HorizontalOptions="FillAndExpand"/>
         <Button Text="Send Notification" Clicked="SendNotification"/>
+        <Button Text="Send Notification Next 10s" Clicked="SendScheduleNotification"/>
     </StackLayout>
 
 </ContentPage>
