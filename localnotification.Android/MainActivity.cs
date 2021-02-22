@@ -6,6 +6,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Android.Content;
+using localnotification.Droid.Notification;
 
 namespace localnotification.Droid
 {
@@ -28,6 +30,41 @@ namespace localnotification.Droid
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+
+
+
+        public void StartMyRequestService()
+        {
+            var serviceToStart = new Intent(this, typeof(MyRequestService));
+            StartService(serviceToStart);
+        }
+
+        public void StopMyRequestService()
+        {
+            var serviceToStart = new Intent(this, typeof(MyRequestService));
+            StopService(serviceToStart);
+        }
+
+
+
+        protected override void OnPause()
+        {
+            base.OnPause();
+            StartMyRequestService();
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            StartMyRequestService();
+        }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+            StopMyRequestService();
         }
     }
 }
