@@ -13,9 +13,8 @@ namespace localnotification
 
         private void SendNotification(object sender, EventArgs e)
         {
-            DependencyService.Get<INotificationManager>().SendNotification("SPTutorials", message.Text, null);
+            DependencyService.Get<INotificationManager>().SendNotification("SPTutorials", message.Text);
         }
-
 
         private void SendScheduleNotification(object sender, EventArgs e)
         {

@@ -68,6 +68,8 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Notification\iOSNotificationManager.cs" />
+    <Compile Include="Notification\iOSNotificationReceiver.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -132,5 +134,8 @@
       <Project>{6258E70B-EBE8-4EB5-9177-D11B1E82F0D8}</Project>
       <Name>localnotification</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Notification\" />
   </ItemGroup>
 </Project>

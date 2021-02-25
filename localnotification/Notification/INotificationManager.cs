@@ -3,6 +3,8 @@ namespace localnotification.Notification
 {
     public interface INotificationManager
     {
-        void SendNotification(String title, String message, DateTime? notifyTime);
+        void Initialize();
+        void SendNotification(string title, string message, DateTime? notifyTime = null);
+        void ReceiveNotification(string title, string message);
     }
 }

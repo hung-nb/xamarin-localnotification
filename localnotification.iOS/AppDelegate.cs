@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using UserNotifications;
 
 namespace localnotification.iOS
 {
@@ -23,6 +24,10 @@ namespace localnotification.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+
+            // Set a delegate to handle incoming notifications.
+            UNUserNotificationCenter.Current.Delegate = new iOSNotificationReceiver();
+
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

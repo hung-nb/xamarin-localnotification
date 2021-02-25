@@ -1,6 +1,5 @@
-﻿using System;
+﻿using localnotification.Notification;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace localnotification
 {
@@ -9,6 +8,8 @@ namespace localnotification
         public App()
         {
             InitializeComponent();
+
+            DependencyService.Get<INotificationManager>().Initialize();
 
             MainPage = new MainPage();
         }
